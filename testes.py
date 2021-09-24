@@ -32,8 +32,8 @@ def registro():
                 break
         while True:
             registro.senha = input("Digite sua senha: ")
-            if registro.senha == "":
-                print("Não deixe sua senha em branco")
+            if len(registro.senha) < 6:
+                print("Sua senha deve conter mais de seis digitos")
             else:
                 while True:                                 #Verificar se senha e usuario são iguais
                     if registro.usuario == registro.senha:
@@ -55,8 +55,11 @@ def registro():
         while True:
             while True:                                 #Adicionar CPF e verificar se é válido ou não
                 registro.cpf = input("Digite seu CPF: ")
-                if cpf_verdadeiro(registro.cpf):
-                    break
+                if len(registro.cpf) == 11:
+                    if cpf_verdadeiro(registro.cpf):
+                        break
+                    else:
+                        print("CPF inválido, tente novamente")
                 else:
                     print("CPF inválido, tente novamente")
             if teste_cpf(registro.cpf):
@@ -95,23 +98,23 @@ def operacoes():                                    #Tabelas
     credito_invalido_b = 0
     credito = 1000                                      #Credito inicial
     tabela = f"""Produto | ID |Preço | Quantidade       
-Arroz   | 1  | {y[1]}  |     {x[1]}
-Arroz   | 2  | {y[2]}  |     {x[2]}
-Arroz   | 3  | {y[3]}  |     {x[3]}
-Arroz   | 4  | {y[4]} |     {x[4]}
-Arroz   | 5  | {y[5]} |     {x[5]}
-Arroz   | 6  | {y[6]} |     {x[6]}
-Arroz   | 7  | {y[7]}  |     {x[7]}
-Arroz   | 8  | {y[8]} |     {x[8]}
-Arroz   | 9  | {y[9]} |     {x[9]}
-Arroz   | 10 | {y[10]}|     {x[10]}
-Arroz   | 11 | {y[11]}  |     {x[11]}
-Arroz   | 12 | {y[12]} |     {x[12]}
-Arroz   | 13 | {y[13]} |     {x[13]}
-Arroz   | 14 | {y[14]}  |     {x[14]}
-Arroz   | 15 | {y[15]}  |     {x[15]}"""
+Item1   | 1  | {y[1]}  |     {x[1]}
+Item2   | 2  | {y[2]}  |     {x[2]}
+Item3   | 3  | {y[3]}  |     {x[3]}
+Item4   | 4  | {y[4]} |     {x[4]}
+Item5   | 5  | {y[5]} |     {x[5]}
+Item6   | 6  | {y[6]} |     {x[6]}
+Item7   | 7  | {y[7]}  |     {x[7]}
+Item8   | 8  | {y[8]} |     {x[8]}
+Item9   | 9  | {y[9]} |     {x[9]}
+Item10  | 10 | {y[10]}|     {x[10]}
+Item11  | 11 | {y[11]}  |     {x[11]}
+Item12  | 12 | {y[12]} |     {x[12]}
+Item13  | 13 | {y[13]} |     {x[13]}
+Item14  | 14 | {y[14]}  |     {x[14]}
+Item15  | 15 | {y[15]}  |     {x[15]}"""
     while True:                                        #Adicionar valores
-        print(f"\n Seu credito restante é igual a: {credito}")
+        print(f"\nSeu credito restante é igual a: {credito}\n")
         print(tabela)
         a = int(input("Digite o ID do produto ou 0(duas vezes) para finalizar a operação: "))
         b = int(input("Quantidade do produto selecionado: "))
@@ -119,42 +122,42 @@ Arroz   | 15 | {y[15]}  |     {x[15]}"""
             x[a] = x[a] + b
             credito = credito - y[a] * b
             tabela = f"""Produto | ID |Preço | Quantidade
-Arroz   | 1  | {y[1]}  |     {x[1]}
-Arroz   | 2  | {y[2]}  |     {x[2]}
-Arroz   | 3  | {y[3]}  |     {x[3]}
-Arroz   | 4  | {y[4]} |     {x[4]}
-Arroz   | 5  | {y[5]} |     {x[5]}
-Arroz   | 6  | {y[6]} |     {x[6]}
-Arroz   | 7  | {y[7]}  |     {x[7]}
-Arroz   | 8  | {y[8]} |     {x[8]}
-Arroz   | 9  | {y[9]} |     {x[9]}
-Arroz   | 10 | {y[10]}|     {x[10]}
-Arroz   | 11 | {y[11]}  |     {x[11]}
-Arroz   | 12 | {y[12]} |     {x[12]}
-Arroz   | 13 | {y[13]} |     {x[13]}
-Arroz   | 14 | {y[14]}  |     {x[14]}
-Arroz   | 15 | {y[15]}  |     {x[15]}"""
+Item1   | 1  | {y[1]}  |     {x[1]}
+Item2   | 2  | {y[2]}  |     {x[2]}
+Item3   | 3  | {y[3]}  |     {x[3]}
+Item4   | 4  | {y[4]} |     {x[4]}
+Item5   | 5  | {y[5]} |     {x[5]}
+Item6   | 6  | {y[6]} |     {x[6]}
+Item7   | 7  | {y[7]}  |     {x[7]}
+Item8   | 8  | {y[8]} |     {x[8]}
+Item9   | 9  | {y[9]} |     {x[9]}
+Item10  | 10 | {y[10]}|     {x[10]}
+Item11  | 11 | {y[11]}  |     {x[11]}
+Item12  | 12 | {y[12]} |     {x[12]}
+Item13  | 13 | {y[13]} |     {x[13]}
+Item14  | 14 | {y[14]}  |     {x[14]}
+Item15  | 15 | {y[15]}  |     {x[15]}"""
         elif credito < 0:
             credito_invalido_a = int(input("Crédito negativo, necessitamos que remova alguns produtos,\ndigite o ID do produto: "))
             credito_invalido_b = int(input("Digite a quantidade de produtos removidos desejada: "))
             credito = credito + y[credito_invalido_a] * credito_invalido_b
             x[credito_invalido_a] = x[credito_invalido_a] - credito_invalido_b
             tabela = f"""Produto | ID |Preço | Quantidade
-Arroz   | 1  | {y[1]}  |     {x[1]}
-Arroz   | 2  | {y[2]}  |     {x[2]}
-Arroz   | 3  | {y[3]}  |     {x[3]}
-Arroz   | 4  | {y[4]} |     {x[4]}
-Arroz   | 5  | {y[5]} |     {x[5]}
-Arroz   | 6  | {y[6]} |     {x[6]}
-Arroz   | 7  | {y[7]}  |     {x[7]}
-Arroz   | 8  | {y[8]} |     {x[8]}
-Arroz   | 9  | {y[9]} |     {x[9]}
-Arroz   | 10 | {y[10]}|     {x[10]}
-Arroz   | 11 | {y[11]}  |     {x[11]}
-Arroz   | 12 | {y[12]} |     {x[12]}
-Arroz   | 13 | {y[13]} |     {x[13]}
-Arroz   | 14 | {y[14]}  |     {x[14]}
-Arroz   | 15 | {y[15]}  |     {x[15]}"""
+Item1   | 1  | {y[1]}  |     {x[1]}
+Item2   | 2  | {y[2]}  |     {x[2]}
+Item3   | 3  | {y[3]}  |     {x[3]}
+Item4   | 4  | {y[4]} |     {x[4]}
+Item5   | 5  | {y[5]} |     {x[5]}
+Item6   | 6  | {y[6]} |     {x[6]}
+Item7   | 7  | {y[7]}  |     {x[7]}
+Item8   | 8  | {y[8]} |     {x[8]}
+Item9   | 9  | {y[9]} |     {x[9]}
+Item10  | 10 | {y[10]}|     {x[10]}
+Item11  | 11 | {y[11]}  |     {x[11]}
+Item12  | 12 | {y[12]} |     {x[12]}
+Item13  | 13 | {y[13]} |     {x[13]}
+Item14  | 14 | {y[14]}  |     {x[14]}
+Item15   | 15 | {y[15]}  |     {x[15]}"""
         elif a == 0:
             credito = 1000
             print("\n---------Operação finalizada, crédito zerado---------\n")
@@ -170,7 +173,7 @@ Arroz   | 15 | {y[15]}  |     {x[15]}"""
 
                 
 def menu():                                      #Opções bases de tudo
-    questao = int(input("Opções: \n1: Login\n2: Registro\n3: Sair\nQue operação deseja? \n"))
+    questao = int(input("-------------OPÇÕES------------- \n1: Login\n2: Registro\n3: Sair\nQue operação deseja? \n-----------------------------------------------------------------\n "))
     if questao == 1:
         if login():
             questao2 = int(input("Deseja efetuar operações de compra? 1-Sim 2-Não: \n"))
